@@ -1,6 +1,5 @@
 Hello from Jenkins!
-namaste
-mate
+welcome!
 
 
 
