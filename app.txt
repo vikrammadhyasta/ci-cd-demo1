@@ -1,6 +1,5 @@
-Hello from Jenkins!
-welcome!
-hii
+echo "Hello Jenkins" >> app.txt
+
 
 
 
