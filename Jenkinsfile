@@ -7,14 +7,13 @@ pipeline {
                 echo 'Cloning repository...'
             }
         }
-
         stage('Build') {
             steps {
                 echo 'Compiling source code...'
+                bat 'mkdir build 2>nul'
                 bat 'javac -d build MyApp.java MyAppTest.java'
             }
         }
-
         stage('Test') {
             steps {
                 echo 'Running tests...'
