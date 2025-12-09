@@ -23,3 +23,20 @@ ExecStart=/usr/bin/dockerd -H unix:///var/run/docker.sock -H tcp://0.0.0.0:2375
 sudo systemctl daemon-reload
 sudo systemctl daemon-reexec
 sudo systemctl restart docker
+
+
+github
+1. Give full permissions to the file (Linux)
+chmod 777 filename
+
+To change folder permissions:
+chmod -R 777 foldername
+
+If you get a permission denied error, force permission reset:
+sudo chmod -R u+rwX .
+
+Make your user the owner:
+sudo chown -R $USER:$USER .
+
+kube
+ cat ~/.kube/config
