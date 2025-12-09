@@ -7,3 +7,9 @@ sudo apt-get install nodejs npm -s
 cd src
 sudo npm install 
 sudo npm run
+
+
+
+sudo docker rm. -fpythonflaskapp
+sudo docker build . -f Dockerfile t pythonflask:v1
+sudo docker run --name pythonflaskapp it -d -p 5803:5080 pythonflask:v1
