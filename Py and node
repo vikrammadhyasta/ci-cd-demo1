@@ -1,0 +1,9 @@
+python3 -m venv venv
+• venv/bin/activate
+pip install r requirements.txt 
+python3 product_ list_app.py &
+
+sudo apt-get install nodejs npm -s 
+cd src
+sudo npm install 
+sudo npm run
