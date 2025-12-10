@@ -1,0 +1,58 @@
+sudo mkdir -p /mnt/nfs 
+sudo mount -t nfs -o nfsvers=3 192.168.50.130:/mnt/Samrdh/Linux /mnt/nfs 
+df -h 
+
+
+  SSH Key Setup
+ssh-keygen -t rsa -b 4096
+ssh-copy-id misu@172.18.181.45
+ssh-copy-id misu@172.18.181.70
+ssh misu@172.18.181.45     # Now SSH works without password login
+
+
+  On Master
+Install NFS server:
+sudo apt install nfs-kernel-server -y
+
+Create shared directory:
+sudo mkdir -p /nfs/shared
+sudo chmod 777 /nfs/shared
+
+Edit exports file:
+sudo nano /etc/exports
+
+
+Add these lines:
+
+/nfs/shared 172.18.181.46(rw, sync, no_subtree_check)
+/nfs/shared 172.18.181.70(rw, sync, no_subtree_check)
+
+Apply NFS export changes:
+sudo exportfs -a
+sudo systemctl restart nfs-kernel-server
+sudo exportfs -v
+
+✅ On Slave 1 & Slave 2
+Install NFS client:
+sudo apt install nfs-common -y
+
+Create mount directory:
+sudo mkdir -p /nfs/shared
+
+Mount the shared folder:
+sudo mount 172.18.181.45:/nfs/shared /nfs/shared
+
+
+Check mount:
+
+df -h | grep nfs
+
+✅ Testing
+On slave:
+cd /nfs/shared
+touch testfile
+
+On master:
+cd /nfs/shared
+ls
+# testfile should appear
